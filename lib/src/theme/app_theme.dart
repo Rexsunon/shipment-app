@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shipment_app/src/core/constants/color_constants.dart';
 
 const double kHeaderTextSize1 = 28;
 const double kHeaderTextSize2 = 23;
@@ -9,7 +10,6 @@ const double kBodyTextSize2 = 14;
 const double kBodyTextSize3 = 12;
 
 class AppTheme {
-  static const Color accentColor = Color(0xFF2B60E8);
   static const double iconSize = 40;
 
   static const Color darkBackgroundColor = Color(0xFF121212);
@@ -17,8 +17,9 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: GoogleFonts.poppins().fontFamily,
+    scaffoldBackgroundColor: kBackgroundColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
+      backgroundColor: kPrimaryColor,
       centerTitle: true,
       elevation: 0,
       iconTheme: IconThemeData(color: Colors.black),
@@ -34,11 +35,15 @@ class AppTheme {
       bodySmall: GoogleFonts.poppins(fontSize: kBodyTextSize3, color: Colors.black),
     ),
     iconTheme: const IconThemeData(
-      color: accentColor,
+      color: kAccentColor,
       // size: iconSize,
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: kAccentColor,
+      unselectedItemColor: Color(0xFF97979c),
+    ),
     buttonTheme: const ButtonThemeData(
-      buttonColor: accentColor,
+      buttonColor: kAccentColor,
     ),
   );
 
@@ -63,11 +68,11 @@ class AppTheme {
       bodySmall: GoogleFonts.poppins(fontSize: kBodyTextSize3, color: Colors.white),
     ),
     iconTheme: const IconThemeData(
-      color: accentColor,
+      color: kAccentColor,
       // size: iconSize,
     ),
     buttonTheme: const ButtonThemeData(
-      buttonColor: accentColor,
+      buttonColor: kAccentColor,
     ),
   );
 }
