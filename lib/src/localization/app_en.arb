@@ -8,5 +8,18 @@
   "shipment": "Shipment",
   "profile": "Profile",
   "yourLocation": "Your location",
-  "enterTheReceiptNumber": "Enter the receipt number..."
+  "enterTheReceiptNumber": "Enter the receipt number...",
+  "tracking": "Tracking",
+  "shipmentNumber": "Shipment Number",
+  "sender": "Sender",
+  "time": "Time",
+  "receiver": "Receiver",
+  "status": "Status",
+  "addStop": "+ Add Stop",
+  "availableVehicles": "Available vehicles",
+  "oceanFreight": "Ocean Freight",
+  "cargoFreight": "Cargo Freight",
+  "international": "International",
+  "reliable": "reliable",
+  "airFreight": "Air Freight"
 }

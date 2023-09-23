@@ -20,4 +20,8 @@ class TextStyleConstants {
   static TextStyle bodySmall(BuildContext context) {
     return Theme.of(context).textTheme.bodySmall!;
   }
+
+  static TextStyle caption(BuildContext context) {
+    return bodyMedium(context).copyWith(color: const Color(0xFF979797));
+  }
 }
