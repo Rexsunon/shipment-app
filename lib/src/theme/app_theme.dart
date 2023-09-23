@@ -27,6 +27,19 @@ class AppTheme {
         statusBarBrightness: Brightness.light,
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      fillColor: Colors.white,
+      filled: true,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(style: BorderStyle.none),
+      ),
+      border: OutlineInputBorder(
+        borderSide: BorderSide(style: BorderStyle.none),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(style: BorderStyle.none),
+      ),
+    ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.poppins(fontSize: kHeaderTextSize1, color: Colors.black),
       displayMedium: GoogleFonts.poppins(fontSize: kHeaderTextSize2, color: Colors.black),

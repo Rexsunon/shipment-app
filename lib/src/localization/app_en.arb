@@ -6,5 +6,7 @@
   "home": "Home",
   "calculator": "Calculator",
   "shipment": "Shipment",
-  "profile": "Profile"
+  "profile": "Profile",
+  "yourLocation": "Your location",
+  "enterTheReceiptNumber": "Enter the receipt number..."
 }
