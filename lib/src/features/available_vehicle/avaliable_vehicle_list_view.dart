@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shipment_app/src/core/constants/assets_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 import 'package:shipment_app/src/features/available_vehicle/componets/available_vehicle_list_item.dart';
 import 'package:shipment_app/src/models/models.dart';
@@ -12,9 +13,9 @@ class AvailableVehicleListView extends StatelessWidget {
     final localization = AppLocalizations.of(context)!;
 
     final availableVehiclesLIst = [
-      AvailableVehicle(name: localization.oceanFreight, space: localization.international, vectorPath: '',),
-      AvailableVehicle(name: localization.cargoFreight, space: localization.reliable, vectorPath: '',),
-      AvailableVehicle(name: localization.airFreight, space: localization.international, vectorPath: '',),
+      AvailableVehicle(name: localization.oceanFreight, space: localization.international, vectorPath: kOceanFreightPng,),
+      AvailableVehicle(name: localization.cargoFreight, space: localization.reliable, vectorPath: kCargoFreightPng,),
+      AvailableVehicle(name: localization.airFreight, space: localization.international, vectorPath: kAirFreightPng,),
     ];
 
     return Column(

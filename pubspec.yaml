@@ -15,6 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  faker: ^2.1.0
   flutter_svg: ^2.0.7
   google_fonts: ^6.1.0
   solar_icons: ^0.0.5

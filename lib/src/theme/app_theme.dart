@@ -39,6 +39,9 @@ class AppTheme {
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(style: BorderStyle.none),
       ),
+      disabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(style: BorderStyle.none),
+      ),
     ),
     textTheme: TextTheme(
       displayLarge: GoogleFonts.poppins(fontSize: kHeaderTextSize1, color: Colors.black),

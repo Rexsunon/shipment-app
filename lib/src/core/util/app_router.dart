@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shipment_app/src/features/dashboard/dashboard_view.dart';
+import 'package:shipment_app/src/features/search/search_shipment_view.dart';
 import 'package:shipment_app/src/features/settings/settings_controller.dart';
 import 'package:shipment_app/src/features/settings/settings_view.dart';
 
@@ -16,6 +17,12 @@ class AppRouter {
         return _buildRoute(
           routeSettings,
           SettingsView(controller: settingsController),
+          transitionType,
+        );
+      case SearchShipmentView.routeName:
+        return _buildRoute(
+          routeSettings,
+          const SearchShipmentView(),
           transitionType,
         );
       case DashboardView.routeName:

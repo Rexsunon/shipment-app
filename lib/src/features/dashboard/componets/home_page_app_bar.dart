@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/core/common/search_text_field.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
+import 'package:shipment_app/src/features/search/search_shipment_view.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 class HomePageAppBar extends StatelessWidget {
@@ -16,6 +17,7 @@ class HomePageAppBar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +86,10 @@ class HomePageAppBar extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            const SearchTextField()
+            GestureDetector(
+              onTap: () => Navigator.of(context).restorablePushNamed(SearchShipmentView.routeName),
+              child: const SearchTextField(enabled: false),
+            )
           ],
         ),
       ),

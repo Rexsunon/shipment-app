@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppCard extends StatelessWidget {
-  const AppCard({super.key, this.width, this.height, required this.child});
+  const AppCard({super.key, this.width, this.height, required this.child, this.padding,});
 
   final double? width;
   final double? height;
+  final EdgeInsetsGeometry? padding;
   final Widget child;
 
   @override
@@ -12,7 +13,7 @@ class AppCard extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      padding: const EdgeInsets.all(15),
+      padding: padding ?? const EdgeInsets.all(15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
