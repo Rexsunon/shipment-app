@@ -5,9 +5,9 @@ import 'package:shipment_app/src/core/constants/color_constants.dart';
 
 const double kHeaderTextSize1 = 28;
 const double kHeaderTextSize2 = 23;
-const double kBodyTextSize1 = 16;
-const double kBodyTextSize2 = 14;
-const double kBodyTextSize3 = 12;
+const double kBodyTextSize1 = 18;
+const double kBodyTextSize2 = 16;
+const double kBodyTextSize3 = 14;
 
 class AppTheme {
   static const double iconSize = 40;
@@ -31,6 +31,13 @@ class AppTheme {
       indicatorColor: kButtonColor,
       indicatorSize: TabBarIndicatorSize.label,
     ),
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+        TargetPlatform.iOS: FadeUpwardsPageTransitionsBuilder(),
+      },
+    ),
+    textSelectionTheme: const TextSelectionThemeData(cursorColor: kPrimaryColor),
     inputDecorationTheme: const InputDecorationTheme(
       fillColor: Colors.white,
       filled: true,
@@ -48,23 +55,18 @@ class AppTheme {
       ),
     ),
     textTheme: TextTheme(
-      displayLarge: GoogleFonts.poppins(fontSize: kHeaderTextSize1, color: Colors.black),
-      displayMedium: GoogleFonts.poppins(fontSize: kHeaderTextSize2, color: Colors.black),
+      displayLarge: GoogleFonts.poppins(fontSize: kHeaderTextSize1, color: kTextHeadingColor),
+      displayMedium: GoogleFonts.poppins(fontSize: kHeaderTextSize2, color: kTextHeadingColor),
       bodyLarge: GoogleFonts.poppins(fontSize: kBodyTextSize1, color: Colors.black),
       bodyMedium: GoogleFonts.poppins(fontSize: kBodyTextSize2, color: Colors.black),
       bodySmall: GoogleFonts.poppins(fontSize: kBodyTextSize3, color: Colors.black),
     ),
-    iconTheme: const IconThemeData(
-      color: kAccentColor,
-      // size: iconSize,
-    ),
+    iconTheme: const IconThemeData(color: kAccentColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: kAccentColor,
       unselectedItemColor: Color(0xFF97979c),
     ),
-    buttonTheme: const ButtonThemeData(
-      buttonColor: kAccentColor,
-    ),
+    buttonTheme: const ButtonThemeData(buttonColor: kAccentColor),
   );
 
   static final ThemeData darkTheme = ThemeData(

@@ -4,7 +4,7 @@
     "description": "The title of the application"
   },
   "home": "Home",
-  "calculator": "Calculator",
+  "calculator": "Calculate",
   "shipment": "Shipment",
   "profile": "Profile",
   "yourLocation": "Your location",
@@ -27,5 +27,13 @@
   "completed": "Completed",
   "inProgress": "In progress",
   "pendingOrder": "Pending order",
-  "cancelled": "Cancelled"
+  "cancelled": "Cancelled",
+  "destination": "Destination",
+  "senderLocation": "Sender location",
+  "receiverLocation": "Receiver location",
+  "approxWeight": "Approx weight",
+  "packaging": "Packaging",
+  "whatAreYouSending": "What are you sending?",
+  "box": "Box",
+  "categories": "Categories"
 }

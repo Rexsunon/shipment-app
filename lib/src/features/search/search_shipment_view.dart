@@ -114,7 +114,7 @@ class _SearchShipmentViewState extends State<SearchShipmentView>with SingleTicke
               removeTop: true,
               removeBottom: true,
               child: ListView.separated(
-                itemCount: _suggestions.length <= 5 ? _suggestions.length : 5,
+                itemCount: _suggestions.length,
                 itemBuilder: (context, index) {
                   var suggestion = _suggestions[index];
                   return SuggestionListItem(shipment: suggestion);

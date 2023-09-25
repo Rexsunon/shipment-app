@@ -29,7 +29,7 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
     tabController = TabController(length: 5, vsync: this);
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500),
     );
 
     appBarAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -102,21 +102,14 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
             });
           },
           tabs: tabs.map((tab) {
-            final index = tabs.indexOf(tab);
-            final intervalStart = index / tabs.length;
-            final intervalEnd = (index + 1) / tabs.length;
             return SlideTransition(
-              position: Tween<Offset>(
+              position: Tween(
                 begin: const Offset(1.0, 0.0),
-                end: Offset.zero,
+                end: const Offset(0.0, 0.0),
               ).animate(
                 CurvedAnimation(
                   parent: animationController,
-                  curve: Interval(
-                    intervalStart,
-                    intervalEnd,
-                    curve: Curves.easeInQuad,
-                  ),
+                  curve: Curves.easeOut, // Adjust the curve as needed
                 ),
               ),
               child: tab,
@@ -124,12 +117,32 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
           }).toList(),
         ),
       ),
-      body: TabBarView(
-        controller: tabController,
+      body: Stack(
         children: [
-          ShipmentListView(shipments: defaultList),
-          for (int index = 0; index < 4; index++)
-            ShipmentListView(shipments: filteredShipments),
+          TabBarView(
+            controller: tabController,
+            children: [
+              ShipmentListView(shipments: defaultList),
+              for (int index = 0; index < 4; index++)
+                ShipmentListView(shipments: filteredShipments),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: Container(
+              width: MediaQuery.sizeOf(context).width,
+              height: MediaQuery.sizeOf(context).height * .2,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: const Alignment(0.00, -4.00),
+                  end: const Alignment(0, 1),
+                  colors: [Colors.white.withOpacity(0), Colors.white],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

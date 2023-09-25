@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             animation: _controller,
             builder: (context, child) {
               return Transform.translate(
-                offset: Offset(0.0, _animation1.value * 100), // Adjust the value as needed
+                offset: Offset(0.0, _animation1.value * 100),
                 child: child,
               );
             },
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               animation: _controller,
               builder: (context, child) {
                 return Transform.translate(
-                  offset: Offset(0.0, _animation2.value * 100), // Adjust the value as needed
+                  offset: Offset(0.0, _animation2.value * 100),
                   child: child,
                 );
               },
@@ -111,7 +111,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 return Transform.translate(
                   offset: Offset(0.0, _animation2.value * 100),
                   child: Opacity(
-                    opacity: _animation3.value, // Use opacity to create a fade-in effect
+                    opacity: _animation3.value,
                     child: child,
                   ),
                 );

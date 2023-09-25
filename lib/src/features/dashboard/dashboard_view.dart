@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shipment_app/src/features/calculate/calculate_view.dart';
 import 'package:shipment_app/src/features/dashboard/pages/calculator_page.dart';
 import 'package:shipment_app/src/features/dashboard/pages/home_page.dart';
 import 'package:shipment_app/src/features/dashboard/pages/profile_page.dart';
@@ -31,7 +32,10 @@ class _DashboardViewState extends State<DashboardView> with SingleTickerProvider
   ];
 
   void _onTabTapped(int index) {
-    if (index == 2) {
+    if (index == 1) {
+      // Navigate to CalculateView when the 2nd item is tapped
+      Navigator.of(context).restorablePushNamed(CalculateView.routeName);
+    } else if (index == 2) {
       // Navigate to ShipmentView when the 3rd item is tapped
       Navigator.of(context).restorablePushNamed(ShipmentView.routeName);
     } else {
@@ -67,40 +71,29 @@ class _DashboardViewState extends State<DashboardView> with SingleTickerProvider
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => pages[index],
       ),
-      bottomNavigationBar: LayoutBuilder(
-        builder: (context, constraints) {
-          return SizedBox(
-            height: constraints.maxHeight * 0.1,
-            child: Stack(
-              children: [
-                AnimatedBottomNavigationBar(
-                  animationController: animationController,
-                  currentIndex: currentPage,
-                  onTap: _onTabTapped,
-                  type: BottomNavigationBarType.fixed,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: const Icon(SolarIconsOutline.home),
-                      label: localization.home,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(SolarIconsOutline.calculator),
-                      label: localization.calculator,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(SolarIconsOutline.repeat),
-                      label: localization.shipment,
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(SolarIconsOutline.user),
-                      label: localization.profile,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        }
+      bottomNavigationBar: BottomNavigationBar(
+        // animationController: animationController,
+        currentIndex: currentPage,
+        onTap: _onTabTapped,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(SolarIconsOutline.home),
+            label: localization.home,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(SolarIconsOutline.calculator),
+            label: localization.calculator,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(SolarIconsOutline.repeat),
+            label: localization.shipment,
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(SolarIconsOutline.user),
+            label: localization.profile,
+          ),
+        ],
       ),
     );
   }
