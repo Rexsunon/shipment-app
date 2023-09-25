@@ -72,9 +72,12 @@ class _SuggestionListItemState extends State<SuggestionListItem> with SingleTick
                 widget.shipment.productName,
                 style: TextStyleConstants.bodyLarge(context),
               ),
-              Text(
-                '${widget.shipment.receipt} · ${widget.shipment.from.split(" ")[0]} → ${widget.shipment.to.split(" ")[0]}',
-                style: TextStyleConstants.caption(context),
+              SizedBox(
+                width: MediaQuery.sizeOf(context).width * .7,
+                child: Text(
+                  '${widget.shipment.receipt} • ${widget.shipment.from.split(" ")[0]} → ${widget.shipment.to.split(" ")[0]}',
+                  style: TextStyleConstants.caption(context).copyWith(fontSize: 14, overflow: TextOverflow.ellipsis),
+                ),
               ),
             ],
           )

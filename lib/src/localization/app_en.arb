@@ -35,5 +35,9 @@
   "packaging": "Packaging",
   "whatAreYouSending": "What are you sending?",
   "box": "Box",
-  "categories": "Categories"
+  "categories": "Categories",
+  "rexMate": "RexMate",
+  "totalEstimationAmount": "Total Estimated Amount",
+  "totalEstimationAmountText": "This amount is estimated this will vary if you change your location or weight",
+  "backToHome": "Back to home"
 }

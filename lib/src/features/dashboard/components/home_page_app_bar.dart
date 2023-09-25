@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/core/common/search_text_field.dart';
+import 'package:shipment_app/src/core/constants/assets_constants.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 import 'package:shipment_app/src/features/search/search_shipment_view.dart';
@@ -28,7 +29,7 @@ class HomePageAppBar extends StatelessWidget {
                     const SizedBox(
                       width: 50,
                       height: 50,
-                      child: CircleAvatar(),
+                      child: CircleAvatar(backgroundImage: AssetImage(kProfilePicturePng),),
                     ),
                     const SizedBox(width: 10),
                     Column(

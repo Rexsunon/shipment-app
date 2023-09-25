@@ -43,6 +43,7 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
     final scale = 1.0 - animationController.value;
 
     return GestureDetector(
+      onTap: widget.onTap,
       onTapDown: tapDown,
       onTapUp: tapUp,
       child: Transform.scale(

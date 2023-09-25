@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shipment_app/src/core/common/app_card.dart';
 import 'package:shipment_app/src/core/common/search_text_field.dart';
 import 'package:shipment_app/src/features/search/components/suggestion_list_item.dart';
-import 'package:shipment_app/src/models/data/shipment_data.dart';
 import 'package:shipment_app/src/models/models.dart';
 import 'package:solar_icons/solar_icons.dart';
 

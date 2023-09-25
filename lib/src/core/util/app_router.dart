@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shipment_app/src/features/calculate/calculate_view.dart';
 import 'package:shipment_app/src/features/dashboard/dashboard_view.dart';
 import 'package:shipment_app/src/features/search/search_shipment_view.dart';
+import 'package:shipment_app/src/features/calculate/total_estimated_amount_view.dart';
 import 'package:shipment_app/src/features/settings/settings_controller.dart';
 import 'package:shipment_app/src/features/settings/settings_view.dart';
 import 'package:shipment_app/src/features/shipment_tracking/shipment_view.dart';
@@ -37,6 +38,12 @@ class AppRouter {
         return _buildRoute(
           routeSettings,
           const CalculateView(),
+          transitionType,
+        );
+      case TotalEstimationAmountView.routeName:
+        return _buildRoute(
+          routeSettings,
+          const TotalEstimationAmountView(),
           transitionType,
         );
       case DashboardView.routeName:

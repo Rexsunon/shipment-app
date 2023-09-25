@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/features/available_vehicle/avaliable_vehicle_list_view.dart';
@@ -77,6 +79,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               child: Material(
                 child: Container(
                   height: appScreenSize.height * .23,
+                  padding: Platform.isAndroid ? const EdgeInsets.only(top: 20) : EdgeInsets.zero,
                   decoration: BoxDecoration(
                     color: Theme.of(context).appBarTheme.backgroundColor,
                   ),
