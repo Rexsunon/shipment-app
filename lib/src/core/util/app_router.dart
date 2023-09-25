@@ -3,6 +3,7 @@ import 'package:shipment_app/src/features/dashboard/dashboard_view.dart';
 import 'package:shipment_app/src/features/search/search_shipment_view.dart';
 import 'package:shipment_app/src/features/settings/settings_controller.dart';
 import 'package:shipment_app/src/features/settings/settings_view.dart';
+import 'package:shipment_app/src/features/shipment_tracking/shipment_view.dart';
 
 class AppRouter {
   final SettingsController settingsController;
@@ -23,6 +24,12 @@ class AppRouter {
         return _buildRoute(
           routeSettings,
           const SearchShipmentView(),
+          transitionType,
+        );
+      case ShipmentView.routeName:
+        return _buildRoute(
+          routeSettings,
+          const ShipmentView(),
           transitionType,
         );
       case DashboardView.routeName:

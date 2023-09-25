@@ -85,11 +85,12 @@ class HomePageAppBar extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const Spacer(),
             GestureDetector(
               onTap: () => Navigator.of(context).restorablePushNamed(SearchShipmentView.routeName),
               child: const SearchTextField(enabled: false),
-            )
+            ),
+            const Spacer(),
           ],
         ),
       ),

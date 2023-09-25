@@ -5,8 +5,46 @@ import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 import 'package:shipment_app/src/features/available_vehicle/componets/available_vehicle_list_item.dart';
 import 'package:shipment_app/src/models/models.dart';
 
-class AvailableVehicleListView extends StatelessWidget {
+class AvailableVehicleListView extends StatefulWidget {
   const AvailableVehicleListView({super.key});
+
+  @override
+  State<AvailableVehicleListView> createState() => _AvailableVehicleListViewState();
+}
+
+class _AvailableVehicleListViewState extends State<AvailableVehicleListView> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500), // Adjust the duration as needed
+    );
+
+
+    _animation = Tween<Offset>(
+      begin: const Offset(1.0, 0.0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // Start the animations when the widget is built
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +75,10 @@ class AvailableVehicleListView extends StatelessWidget {
             itemBuilder: (context, index) {
               final availableVehicle = availableVehiclesLIst[index];
 
-              return AvailableVehicleListItem(availableVehicle: availableVehicle);
+              return SlideTransition(
+                position: _animation,
+                child: AvailableVehicleListItem(availableVehicle: availableVehicle),
+              );
             },
             separatorBuilder: (context, index) => const SizedBox(width: 20),
             itemCount: availableVehiclesLIst.length,

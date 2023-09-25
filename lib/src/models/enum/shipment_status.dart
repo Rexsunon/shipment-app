@@ -1,1 +1,1 @@
-enum ShipmentStatus { loading, inProgress, completed, pending }
+enum ShipmentStatus { completed, inProgress, pending, loading }

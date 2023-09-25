@@ -4,7 +4,7 @@ import 'package:shipment_app/src/core/common/app_card.dart';
 import 'package:shipment_app/src/core/constants/assets_constants.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
-import 'package:shipment_app/src/features/dashboard/componets/tracking_card_item.dart';
+import 'package:shipment_app/src/features/dashboard/components/tracking_card_item.dart';
 
 class ShipmentTrackingCard extends StatelessWidget {
   const ShipmentTrackingCard({super.key});

@@ -22,10 +22,14 @@ class AppTheme {
       backgroundColor: kPrimaryColor,
       centerTitle: true,
       elevation: 0,
-      iconTheme: IconThemeData(color: Colors.black),
+      iconTheme: IconThemeData(color: Colors.white),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
       ),
+    ),
+    tabBarTheme: const TabBarTheme(
+      indicatorColor: kButtonColor,
+      indicatorSize: TabBarIndicatorSize.label,
     ),
     inputDecorationTheme: const InputDecorationTheme(
       fillColor: Colors.white,

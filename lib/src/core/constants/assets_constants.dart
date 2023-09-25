@@ -8,6 +8,7 @@ const kForkLiftPng = '$_img/forklift.png';
 const kOpenBoxPng = '$_img/open-box.png';
 const kBoxPng = '$_img/box.png';
 const kPackageBoxPng = '$_img/package-box.png';
+const kShipmentBoxPng = '$_img/shipment-box.png';
 const kSearchPackageBoxPng = '$_img/search-package-box.png';
 const kAirFreightPng = '$_img/air-freight.png';
 const kCargoFreightPng = '$_img/cargo-freight.png';

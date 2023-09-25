@@ -11,6 +11,7 @@
   "enterTheReceiptNumber": "Enter the receipt number...",
   "tracking": "Tracking",
   "shipmentNumber": "Shipment Number",
+  "shipmentHistory": "Shipment History",
   "sender": "Sender",
   "time": "Time",
   "receiver": "Receiver",
@@ -21,5 +22,10 @@
   "cargoFreight": "Cargo Freight",
   "international": "International",
   "reliable": "reliable",
-  "airFreight": "Air Freight"
+  "airFreight": "Air Freight",
+  "all": "All",
+  "completed": "Completed",
+  "inProgress": "In progress",
+  "pendingOrder": "Pending order",
+  "cancelled": "Cancelled"
 }

@@ -1,11 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/features/available_vehicle/avaliable_vehicle_list_view.dart';
-import 'package:shipment_app/src/features/dashboard/componets/home_page_app_bar.dart';
-import 'package:shipment_app/src/features/shipment_tracking/shipment_tracking_card.dart';
+import 'package:shipment_app/src/features/dashboard/components/home_page_app_bar.dart';
+import 'package:shipment_app/src/features/shipment_tracking/components/shipment_tracking_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation1;
+  late Animation<double> _animation2;
+  late Animation<double> _animation3;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _animation1 = Tween(begin: -1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _animation2 = Tween(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _animation3 = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,104 +63,63 @@ class HomePage extends StatelessWidget {
 
     return CustomScrollView(
       slivers: [
-        /*SliverAppBar(
-          pinned: true,
-          expandedHeight: appScreenSize.height * .17,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircleAvatar(),
+        SliverToBoxAdapter(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(0.0, _animation1.value * 100), // Adjust the value as needed
+                child: child,
+              );
+            },
+            child: Hero(
+              tag: "appbar",
+              child: Material(
+                child: Container(
+                  height: appScreenSize.height * .23,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).appBarTheme.backgroundColor,
                   ),
-                  const SizedBox(width: 10),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.near_me_rounded,
-                            size: 18,
-                            color: kAppBarIconColor,
-                          ),
-                          const SizedBox(width: 5),
-                          Text(
-                            localization.yourLocation,
-                            style: TextStyleConstants.bodyLarge(context)
-                                .copyWith(
-                              color: kAppBarIconColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            "Evidence, Rex",
-                            style: TextStyleConstants.bodyLarge(context)
-                                .copyWith(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          const Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 50,
-                height: 50,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(SolarIconsOutline.bell, color: Colors.black),
+                  child: const HomePageAppBar(),
                 ),
               ),
-            ],
-          ),
-          bottom: const PreferredSize(
-            preferredSize: Size(double.infinity, kToolbarHeight),
-            child: Padding(
-              padding: EdgeInsets.all(20.0),
-              child: SearchTextField(),
             ),
-          ),
-        ),*/
-        SliverToBoxAdapter(
-          child: Container(
-            height: appScreenSize.height * .23,
-            decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.backgroundColor,
-            ),
-            child: const HomePageAppBar(),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.all(20),
+
+        SliverPadding(
+          padding: const EdgeInsets.all(20),
           sliver: SliverToBoxAdapter(
-            child: ShipmentTrackingCard(),
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(0.0, _animation2.value * 100), // Adjust the value as needed
+                  child: child,
+                );
+              },
+              child: const ShipmentTrackingCard(),
+            ),
           ),
         ),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: appScreenSize.height * .3,
-            child: const AvailableVehicleListView(),
+            height: MediaQuery.of(context).size.height * .3,
+            child: AnimatedBuilder(
+              animation: _controller,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(0.0, _animation2.value * 100),
+                  child: Opacity(
+                    opacity: _animation3.value, // Use opacity to create a fade-in effect
+                    child: child,
+                  ),
+                );
+              },
+              child: const AvailableVehicleListView(),
+            ),
           ),
-        )
+        ),
       ],
     );
   }

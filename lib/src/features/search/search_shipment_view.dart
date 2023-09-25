@@ -15,18 +15,13 @@ class SearchShipmentView extends StatefulWidget {
   State<SearchShipmentView> createState() => _SearchShipmentViewState();
 }
 
-class _SearchShipmentViewState extends State<SearchShipmentView> {
+class _SearchShipmentViewState extends State<SearchShipmentView>with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _suggestionAnimation;
+
   final TextEditingController _searchController = TextEditingController();
   final List<Shipment> _shipments = generateShipmentDemoData();
   List<Shipment> _suggestions = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController.addListener(_onSearchChanged);
-    // Initially, show default suggestions
-    _suggestions = _shipments;
-  }
 
   void _onSearchChanged() {
     final query = _searchController.text.toLowerCase();
@@ -40,6 +35,33 @@ class _SearchShipmentViewState extends State<SearchShipmentView> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchChanged);
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _suggestionAnimation = Tween(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    // Initially, show default suggestions
+    _suggestions = _shipments;
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -47,29 +69,34 @@ class _SearchShipmentViewState extends State<SearchShipmentView> {
           double.infinity,
           MediaQuery.sizeOf(context).height * .15,
         ),
-        child: Container(
-          height: MediaQuery.sizeOf(context).height * .15,
-          color: Theme.of(context).appBarTheme.backgroundColor,
-          child: SafeArea(
-            child: Row(
-              children: [
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(
-                    SolarIconsOutline.altArrowLeft,
-                    color: Colors.white,
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: SearchTextField(
-                      controller: _searchController,
-                      autoFocus: true,
+        child: Hero(
+          tag: "appbar",
+          child: Material(
+            child: Container(
+              height: MediaQuery.sizeOf(context).height * .15,
+              color: Theme.of(context).appBarTheme.backgroundColor,
+              child: SafeArea(
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(
+                        SolarIconsOutline.altArrowLeft,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                )
-              ],
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: SearchTextField(
+                          controller: _searchController,
+                          autoFocus: true,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ),
