@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SlidUpAnimationWidget extends StatefulWidget {
-  const SlidUpAnimationWidget({super.key, required this.child});
+class SlideUpAnimationWidget extends StatefulWidget {
+  const SlideUpAnimationWidget({super.key, required this.child});
 
   final Widget child;
 
   @override
-  State<SlidUpAnimationWidget> createState() => _SlidUpAnimationWidgetState();
+  State<SlideUpAnimationWidget> createState() => _SlideUpAnimationWidgetState();
 }
 
-class _SlidUpAnimationWidgetState extends State<SlidUpAnimationWidget> with SingleTickerProviderStateMixin {
+class _SlideUpAnimationWidgetState extends State<SlideUpAnimationWidget> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 

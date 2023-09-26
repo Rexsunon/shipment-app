@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:shipment_app/src/models/data/shipment_data.dart';
 import 'package:shipment_app/src/models/models.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -60,8 +59,6 @@ class SearchShipmentDelegate extends SearchDelegate<String> {
         return ListTile(
           title: Text(shipment.productName),
           onTap: () {
-            // You can perform an action when a suggestion is tapped.
-            // For example, you can close the search and pass back the selected item.
             close(context, shipment.productName);
           },
         );

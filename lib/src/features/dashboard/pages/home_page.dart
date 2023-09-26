@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/features/available_vehicle/avaliable_vehicle_list_view.dart';
 import 'package:shipment_app/src/features/dashboard/components/home_page_app_bar.dart';
 import 'package:shipment_app/src/features/shipment_tracking/components/shipment_tracking_card.dart';
@@ -60,7 +59,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    final localization = AppLocalizations.of(context)!;
     final appScreenSize = MediaQuery.sizeOf(context);
 
     return CustomScrollView(
@@ -77,13 +75,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: Hero(
               tag: "appbar",
               child: Material(
-                child: Container(
-                  height: appScreenSize.height * .23,
-                  padding: Platform.isAndroid ? const EdgeInsets.only(top: 20) : EdgeInsets.zero,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).appBarTheme.backgroundColor,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: appScreenSize.height * .23,
+                    padding: Platform.isAndroid ? const EdgeInsets.only(top: 20) : EdgeInsets.zero,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).appBarTheme.backgroundColor,
+                    ),
+                    child: const HomePageAppBar(),
                   ),
-                  child: const HomePageAppBar(),
                 ),
               ),
             ),

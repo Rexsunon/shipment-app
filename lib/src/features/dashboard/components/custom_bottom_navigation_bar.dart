@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shipment_app/src/core/common/slide_up_animation_widget.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 
@@ -63,34 +64,36 @@ class CustomBottomNavigationBarItemWidget extends StatelessWidget {
     var theme = Theme.of(context);
     var screenSize = MediaQuery.sizeOf(context);
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 0.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AnimatedContainer(
-            width: screenSize.width * .128,
-            height: isSelected ? 3 : 0,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-            margin: EdgeInsets.only(
-              bottom: screenSize.width * .014,
+    return SlideUpAnimationWidget(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 0.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedContainer(
+              width: screenSize.width * .128,
+              height: isSelected ? 3 : 0,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+              margin: EdgeInsets.only(
+                bottom: screenSize.width * .014,
+              ),
+              decoration: BoxDecoration(
+                color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),
+              ),
             ),
-            decoration: BoxDecoration(
-              color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),
+            SizedBox(
+              height: 25,
+              width: 25,
+              child: Icon(item.icon, color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),),
             ),
-          ),
-          SizedBox(
-            height: 25,
-            width: 25,
-            child: Icon(item.icon, color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),),
-          ),
-          const SizedBox(height: 7),
-          Text(
-            item.label,
-            style: TextStyleConstants.bodySmall(context).copyWith(color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),),
-          )
-        ],
+            const SizedBox(height: 7),
+            Text(
+              item.label,
+              style: TextStyleConstants.bodySmall(context).copyWith(color: isSelected ? kAccentColor : const Color(0xFFa0a0a0),),
+            )
+          ],
+        ),
       ),
     );
   }

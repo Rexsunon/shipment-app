@@ -9,7 +9,7 @@ class CalculateTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SlidUpAnimationWidget(
+    return SlideUpAnimationWidget(
       child: TextFormField(
         decoration: InputDecoration(
           fillColor: const Color(0xFFf8f8f8),

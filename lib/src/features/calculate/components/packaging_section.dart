@@ -19,7 +19,7 @@ class _PackagingSectionState extends State<PackagingSection> {
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
 
-    return SlidUpAnimationWidget(
+    return SlideUpAnimationWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

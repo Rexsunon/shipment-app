@@ -14,14 +14,13 @@ class SearchShipmentView extends StatefulWidget {
   State<SearchShipmentView> createState() => _SearchShipmentViewState();
 }
 
-class _SearchShipmentViewState extends State<SearchShipmentView>with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _suggestionAnimation;
+class _SearchShipmentViewState extends State<SearchShipmentView> {
 
   final TextEditingController _searchController = TextEditingController();
   final List<Shipment> _shipments = generateShipmentDemoData();
   List<Shipment> _suggestions = [];
 
+  /// This method is use for filtering through the shipment suggestion list
   void _onSearchChanged() {
     final query = _searchController.text.toLowerCase();
     setState(() {
@@ -38,26 +37,8 @@ class _SearchShipmentViewState extends State<SearchShipmentView>with SingleTicke
     super.initState();
     _searchController.addListener(_onSearchChanged);
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-
-    _suggestionAnimation = Tween(begin: 1.0, end: 0.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeIn,
-      ),
-    );
-
     // Initially, show default suggestions
     _suggestions = _shipments;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override

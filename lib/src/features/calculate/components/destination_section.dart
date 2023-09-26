@@ -46,7 +46,7 @@ class _DestinationSectionState extends State<DestinationSection> {
       ),
     ];
 
-    return SlidUpAnimationWidget(
+    return SlideUpAnimationWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

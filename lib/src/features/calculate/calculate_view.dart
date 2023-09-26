@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/core/common/app_button.dart';
 import 'package:shipment_app/src/core/common/app_card.dart';
+import 'package:shipment_app/src/core/common/faid_in_animation_widget.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
 import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 import 'package:shipment_app/src/features/calculate/components/destination_section.dart';
@@ -27,16 +30,48 @@ class _CalculateViewState extends State<CalculateView> {
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
+    final screenSize = MediaQuery.sizeOf(context);
 
-    final screenHeight = MediaQuery.of(context).size.height;
+
+    final screenHeight = screenSize.height;
     final appBarHeight = AppBar().preferredSize.height + MediaQuery.paddingOf(context).top;
     final remainingHeight = screenHeight - appBarHeight;
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(Platform.isAndroid ? AppBar().preferredSize.height : screenHeight * .1),
+        child: Hero(
+          tag: "appbar",
+          child: Material(
+            child: Container(
+              // padding: Platform.isAndroid ? const EdgeInsets.only(top: 20) : EdgeInsets.zero,
+              decoration: BoxDecoration(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+              ),
+              child: SafeArea(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FadeInAnimationWidget(
+                      child: IconButton(
+                        icon: const Icon(SolarIconsOutline.altArrowLeft, color: Colors.white,),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ),
+                    FadeInAnimationWidget(
+                      child: Text(localization.calculator, style: TextStyleConstants.bodyLarge(context).copyWith(color: Colors.white),),
+                    ),
+                    SizedBox(width: screenSize.width * .1),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         shrinkWrap: true,
         slivers: [
-          SliverAppBar(pinned: true, title: Text(localization.calculator)),
           SliverPadding(
             padding: const EdgeInsets.all(20),
             sliver: SliverToBoxAdapter(

@@ -69,9 +69,9 @@ class _TotalEstimationAmountViewState extends State<TotalEstimationAmountView>
           ),
 
           const SizedBox(height: 50),
-          SlidUpAnimationWidget(child: Image.asset(kShipmentBoxPng, scale: 4)),
+          SlideUpAnimationWidget(child: Image.asset(kShipmentBoxPng, scale: 4)),
           const SizedBox(height: 50),
-          SlidUpAnimationWidget(
+          SlideUpAnimationWidget(
             child: Text(
               localization.totalEstimationAmount,
               style: TextStyleConstants.headline1(context).copyWith(
@@ -80,7 +80,7 @@ class _TotalEstimationAmountViewState extends State<TotalEstimationAmountView>
             ),
           ),
           // const SizedBox(height: 10),
-          SlidUpAnimationWidget(
+          SlideUpAnimationWidget(
             child: FadeInAnimationWidget(
               child: AnimatedBuilder(
                 animation: _controller,
@@ -96,7 +96,7 @@ class _TotalEstimationAmountViewState extends State<TotalEstimationAmountView>
               ),
             ),
           ),
-          SlidUpAnimationWidget(
+          SlideUpAnimationWidget(
             child: FadeInAnimationWidget(
               child: SizedBox(
                 width: MediaQuery.sizeOf(context).width * .8,
@@ -109,7 +109,7 @@ class _TotalEstimationAmountViewState extends State<TotalEstimationAmountView>
             ),
           ),
           const SizedBox(height: 30),
-          SlidUpAnimationWidget(
+          SlideUpAnimationWidget(
             child: FadeInAnimationWidget(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),

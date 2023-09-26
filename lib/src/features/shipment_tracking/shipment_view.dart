@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:shipment_app/src/core/constants/color_constants.dart';
+import 'package:shipment_app/src/core/constants/text_style_constants.dart';
 import 'package:shipment_app/src/features/shipment_tracking/shipment_list_view.dart';
 import 'package:shipment_app/src/models/models.dart';
 import 'package:solar_icons/solar_icons.dart';
@@ -62,6 +63,7 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
     final tabs = [
       Tab(child: TabItem(label: localization.all, number: defaultList.length)),
 
+      // dynamically load the rest of the tabItems by status
       for (int i = 0; i < 4; i++)
         Tab(
           child: TabItem(
@@ -72,49 +74,75 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: FadeTransition(
-          opacity: appBarAnimation,
-          child: Text(localization.shipmentHistory),
-        ),
-        leading: FadeTransition(
-          opacity: appBarAnimation,
-          child: IconButton(
-            icon: const Icon(SolarIconsOutline.altArrowLeft),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
-        bottom: TabBar(
-          controller: tabController,
-          isScrollable: true,
-          enableFeedback: true,
-          indicatorColor: kButtonColor,
-          // padding: const EdgeInsets.symmetric(horizontal: 20),
-          onTap: (value) {
-            if (value < 1) {
-              // filteredShipments = defaultList;
-              return;
-            }
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(AppBar().preferredSize.height + kToolbarHeight),
+        child: Hero(
+          tag: "appbar",
+          child: Material(
+            child: Container(
+              color: Theme.of(context).appBarTheme.backgroundColor,
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    // const Spacer(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        FadeTransition(
+                          opacity: appBarAnimation,
+                          child: IconButton(
+                            icon: const Icon(SolarIconsOutline.altArrowLeft, color: Colors.white,),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ),
+                        FadeTransition(
+                          opacity: appBarAnimation,
+                          child: Text(localization.shipmentHistory, style: TextStyleConstants.bodyLarge(context).copyWith(color: Colors.white),),
+                        ),
+                        SizedBox(width: MediaQuery.sizeOf(context).width * .1),
+                      ],
+                    ),
+                    const Spacer(),
+                    TabBar(
+                      controller: tabController,
+                      isScrollable: true,
+                      enableFeedback: true,
+                      indicatorColor: kButtonColor,
+                      // padding: const EdgeInsets.symmetric(horizontal: 20),
+                      onTap: (value) {
+                        // do nothing if the tapped tabItem is the first
+                        if (value < 1) {
+                          // filteredShipments = defaultList;
+                          return;
+                        }
 
-            // When a tab is tapped, update the filtered shipments
-            setState(() {
-              filteredShipments = filterShipmentsByStatus(ShipmentStatus.values[value - 1]);
-            });
-          },
-          tabs: tabs.map((tab) {
-            return SlideTransition(
-              position: Tween(
-                begin: const Offset(1.0, 0.0),
-                end: const Offset(0.0, 0.0),
-              ).animate(
-                CurvedAnimation(
-                  parent: animationController,
-                  curve: Curves.easeOut, // Adjust the curve as needed
+                        // When a tab is tapped, update the filtered shipments
+                        setState(() {
+                          filteredShipments = filterShipmentsByStatus(ShipmentStatus.values[value - 1]);
+                        });
+                      },
+                      tabs: tabs.map((tab) {
+                        // Add slide Transaction to the tabItems when the screen launch
+                        return SlideTransition(
+                          position: Tween(
+                            begin: const Offset(1.0, 0.0),
+                            end: const Offset(0.0, 0.0),
+                          ).animate(
+                            CurvedAnimation(
+                              parent: animationController,
+                              curve: Curves.easeOut,
+                            ),
+                          ),
+                          child: tab,
+                        );
+                      }).toList(),
+                    ),
+                  ],
                 ),
               ),
-              child: tab,
-            );
-          }).toList(),
+            ),
+          ),
         ),
       ),
       body: Stack(
@@ -122,11 +150,16 @@ class _ShipmentViewState extends State<ShipmentView> with TickerProviderStateMix
           TabBarView(
             controller: tabController,
             children: [
+              // load all shipment tab view
               ShipmentListView(shipments: defaultList),
+
+              // load the tabView by status
               for (int index = 0; index < 4; index++)
                 ShipmentListView(shipments: filteredShipments),
             ],
           ),
+
+          // White overlay foreground at the bottom of the view
           Positioned(
             bottom: 0,
             right: 0,

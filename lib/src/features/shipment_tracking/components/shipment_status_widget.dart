@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shipment_app/src/core/util/util.dart';
 import 'package:shipment_app/src/models/enum/shipment_status.dart';
 import 'package:solar_icons/solar_icons.dart';
 
@@ -33,33 +34,5 @@ class ShipmentStatusWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  // Helper method to get the status label
-  String getStatusLabel(ShipmentStatus status) {
-    switch (status) {
-      case ShipmentStatus.loading:
-        return 'loading';
-      case ShipmentStatus.inProgress:
-        return 'in-progress';
-      case ShipmentStatus.completed:
-        return 'completed';
-      case ShipmentStatus.pending:
-        return 'pending orders';
-    }
-  }
-
-  // Helper method to get the status label
-  Color getStatusColor(ShipmentStatus status) {
-    switch (status) {
-      case ShipmentStatus.loading:
-        return const Color(0xFF4784bd);
-      case ShipmentStatus.inProgress:
-        return const Color(0xFF7abea0);
-      case ShipmentStatus.completed:
-        return const Color(0xFF53448e);
-      case ShipmentStatus.pending:
-        return const Color(0xFFe89552);
-    }
   }
 }

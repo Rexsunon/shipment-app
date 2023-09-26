@@ -8,7 +8,6 @@ import 'package:shipment_app/src/features/dashboard/pages/shipment_page.dart';
 import 'package:shipment_app/src/features/shipment_tracking/shipment_view.dart';
 import 'package:solar_icons/solar_icons.dart';
 
-import 'components/animated_bottom_navigation_bar.dart';
 import 'components/custom_bottom_navigation_bar.dart';
 
 class DashboardView extends StatefulWidget {
