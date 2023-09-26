@@ -9,6 +9,7 @@ import 'package:shipment_app/src/features/shipment_tracking/shipment_view.dart';
 import 'package:solar_icons/solar_icons.dart';
 
 import 'components/animated_bottom_navigation_bar.dart';
+import 'components/custom_bottom_navigation_bar.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
@@ -71,26 +72,25 @@ class _DashboardViewState extends State<DashboardView> with SingleTickerProvider
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => pages[index],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomBottomNavigationBar(
         // animationController: animationController,
         currentIndex: currentPage,
-        onTap: _onTabTapped,
-        type: BottomNavigationBarType.fixed,
+        onChange: _onTabTapped,
         items: [
-          BottomNavigationBarItem(
-            icon: const Icon(SolarIconsOutline.home),
+          CustomBottomNavigationBarItem(
+            icon: SolarIconsOutline.home,
             label: localization.home,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(SolarIconsOutline.calculator),
+          CustomBottomNavigationBarItem(
+            icon: SolarIconsOutline.calculator,
             label: localization.calculator,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(SolarIconsOutline.repeat),
+          CustomBottomNavigationBarItem(
+            icon: SolarIconsOutline.repeat,
             label: localization.shipment,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(SolarIconsOutline.user),
+          CustomBottomNavigationBarItem(
+            icon: SolarIconsOutline.user,
             label: localization.profile,
           ),
         ],
